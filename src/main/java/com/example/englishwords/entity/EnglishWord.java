@@ -1,16 +1,18 @@
 package com.example.englishwords.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
 import java.util.Objects;
 
+@Entity
+@Table(name = "words")
 public class EnglishWord {
 
+    @jakarta.persistence.Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "english_word")
@@ -18,14 +20,13 @@ public class EnglishWord {
     @Column(name = "translation")
     private String translate;
 
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
 
+    public Long getId() {
+        return id;
+    }
     public String getWord() {
         return word;
     }
@@ -54,4 +55,6 @@ public class EnglishWord {
     public int hashCode() {
         return Objects.hash(id, word, translate);
     }
+
+
 }
