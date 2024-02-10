@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface EnglishWordRepository extends JpaRepository<EnglishWord,Long> {
-    Optional<EnglishWord> findFirstById(Long id);
+    Optional<EnglishWord> findEnglishWordById(Long id);
 
-    String getWordById(long currentWordId);
+
 }
