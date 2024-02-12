@@ -1,11 +1,19 @@
 package com.example.englishwords.service;
 
+import com.example.englishwords.config.BotConfig;
 import com.example.englishwords.entity.EnglishWord;
 import com.example.englishwords.repository.EnglishWordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
+import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TelegramBotService {
@@ -32,7 +40,7 @@ public class TelegramBotService {
             if (messageText.equals("/start")) {
                 return startCommandReceived(chatId, update.getMessage().getChat().getFirstName());
             }
-            if (messageText.equals("go")) {
+            if (messageText.equals("/go")) {
                 EnglishWord word = getNextWord();
                 return new SendMessage(String.valueOf(chatId), word.getWord());
             }
